@@ -1,6 +1,8 @@
 package com.test.service;
 
+import com.test.pojo.TbUser;
+
 public interface TestService {
 
-    String getService(String name);
+    TbUser getService(Integer id);
 }

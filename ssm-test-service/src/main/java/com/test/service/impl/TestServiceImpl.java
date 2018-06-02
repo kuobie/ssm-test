@@ -1,6 +1,7 @@
 package com.test.service.impl;
 
 import com.test.mapper.TestDao;
+import com.test.pojo.TbUser;
 import com.test.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,8 @@ public class TestServiceImpl implements TestService {
     private TestDao testDao;
 
     @Override
-    public String getService(String name) {
-        System.out.println(name);
-        String string = testDao.getString(name);
-        return string;
+    public TbUser getService(Integer id) {
+        TbUser tbUser = testDao.getUser(id);
+        return tbUser;
     }
 }
