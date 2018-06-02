@@ -15,39 +15,46 @@
     <body>
         <h2>商品列表</h2>
         <p>You can add User,or Edit_User、Delete_User if you selected an user</p>
-        <table id="dg" title="用户操作" class="easyui-datagrid" style="width:700px;height:250px"
-               url="<%=request.getContextPath()%>/userList"
+        <table id="dg" title="商品操作" class="easyui-datagrid" style="width:700px;height:250px"
+               url="<%=request.getContextPath()%>/getItemList"
                toolbar="#toolbar" pagination="true"
                rownumbers="true" fitColumns="true" singleSelect="true">
             <thead>
-            <tr >
-                <th field="id" width="30" >用户ID</th>
-                <th field="name" width="50">姓名</th>
-                <th field="password" width="30">密码</th>
-            </tr>
+                <tr >
+                    <th field="id" width="30" >商品id</th>
+                    <th field="title" width="50">商品标题</th>
+                    <th field="price" width="30">价格</th>
+                    <th field="num" width="30">库存数量</th>
+                </tr>
             </thead>
         </table>
         <div id="toolbar">
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新建用户</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增商品</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除</a>
         </div>
 
         <div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
              closed="true" buttons="#dlg-buttons">
-            <div class="ftitle">用户信息</div>
+            <div class="ftitle">商品信息</div>
             <form id="fm" method="post" novalidate>
                 <div class="fitem">
-                    <label>用户ID:</label>
-                    <input name="id" class="easyui-textbox" required="true" >
+                    <label>商品id:</label>
+                    <input name="id" class="easyui-textbox" required="true">
+                </div>
+
+                <div class="fitem">
+                    <label>商品标题:</label>
+                    <input name="title" class="easyui-textbox" required="true">
+                </div>
+
+                <div class="fitem">
+                    <label>价格:</label>
+                    <input name="price" class="easyui-textbox" required="true">
                 </div>
                 <div class="fitem">
-                    <label>姓名:</label>
-                    <input name="name" class="easyui-textbox" required="true">
-                </div>
-                <div class="fitem">
-                    <label>密码:</label>
-                    <input name="password" type="password" class="easyui-textbox" required="true">
+                    <label>库存:</label>
+                    <input name="num" class="easyui-textbox" required="true">
                 </div>
             </form>
         </div>
@@ -62,13 +69,13 @@
                 if (row){
                     $('#dlg').dialog('open').dialog('setTitle','Edit User');
                     $('#fm').form('load',row);
-                    url_pattern = '<%=request.getContextPath()%>/updateUser';
+                    url_pattern = '<%=request.getContextPath()%>/updateItem';
                 }
             }
             function newUser(){
                 $('#dlg').dialog('open').dialog('setTitle','New User');
-                //  $('#fm').form('clear');
-                url_pattern = '<%=request.getContextPath()%>/addMyuser';
+                $('#fm').form('clear');
+                url_pattern = '<%=request.getContextPath()%>/addItem';
             }
             function saveUser(){
                 alert(url_pattern);
@@ -87,9 +94,9 @@
             function destroyUser(){
                 var row = $('#dg').datagrid('getSelected');
                 if (row){
-                    $.messager.confirm('Confirm','确定要删除这个用户么？',function(r){
+                    $.messager.confirm('Confirm','确定要删除这个商品么？',function(r){
                         if (r){
-                            $.post('<%=request.getContextPath()%>/deleteUser',{id:row.id},function(result){
+                            $.post('<%=request.getContextPath()%>/deleteItem',{id:row.id},function(result){
                                 $('#dg').datagrid('reload');
                             },'json');
                         }
