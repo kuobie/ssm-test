@@ -9,9 +9,9 @@ import lombok.ToString;
 @ToString
 public class ItemQuery {
 
-    private Integer page = 1;
+    private Integer page;
 
-    private Integer rows = 10;
+    private Integer rows;
 
     private Integer start;
     private Integer end;
