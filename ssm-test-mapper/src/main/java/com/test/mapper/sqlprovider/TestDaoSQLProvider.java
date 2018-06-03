@@ -1,4 +1,4 @@
-package com.test.mapper;
+package com.test.mapper.sqlprovider;
 
 import com.test.pojo.ItemQuery;
 import org.apache.ibatis.jdbc.SQL;

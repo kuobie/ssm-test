@@ -1,6 +1,7 @@
 package com.test.mapper;
 
 
+import com.test.mapper.sqlprovider.TestDaoSQLProvider;
 import com.test.pojo.ItemQuery;
 import com.test.pojo.TbItem;
 import org.apache.ibatis.annotations.*;
