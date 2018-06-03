@@ -12,7 +12,4 @@ public class ItemQuery {
     private Integer page;
 
     private Integer rows;
-
-    private Integer start;
-    private Integer end;
 }
