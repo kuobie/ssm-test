@@ -10,8 +10,11 @@ import java.util.List;
 
 public interface TestDao {
 
-    @Select("select * from tb_item order by updated desc limit #{query.start} , #{query.end} ")
-    List<TbItem> getItemList(@Param("query") ItemQuery query);
+   /* @Select("select * from tb_item order by updated desc limit #{query.start} , #{query.end} ")
+    List<TbItem> getItemList(@Param("query") ItemQuery query);*/
+
+    @SelectProvider(type = TestDaoSQLProvider.class,method = "getItemList")
+    List<TbItem> getItemList(ItemQuery query);
 
     @Insert("insert into tb_item (created,updated,title,price,num) values (now(),now(),#{tbItem.title},#{tbItem.price},#{tbItem.num})")
     Boolean addItem(@Param("tbItem") TbItem tbItem);

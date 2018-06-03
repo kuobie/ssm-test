@@ -2,7 +2,6 @@ package com.test.controller;
 
 import com.test.pojo.ItemQuery;
 import com.test.pojo.TbItem;
-import com.test.response.BaseResponse;
 import com.test.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class TestController {
 
         try {
             List<TbItem> itemList = testService.getItemList(query);
-            BaseResponse baseResponse = new BaseResponse(itemList);
+
             return itemList;
         } catch (Exception e) {
             e.printStackTrace();

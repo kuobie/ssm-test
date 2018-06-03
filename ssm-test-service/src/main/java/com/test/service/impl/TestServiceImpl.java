@@ -17,8 +17,6 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public List<TbItem> getItemList(ItemQuery query) {
-        query.setStart((query.getPage()-1) * query.getRows());
-        query.setEnd(query.getRows());
 
         List<TbItem> itemList = testDao.getItemList(query);
         return itemList;
